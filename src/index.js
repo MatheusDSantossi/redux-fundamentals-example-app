@@ -15,26 +15,34 @@ const unsubscribe = store.subscribe(() =>
   console.log('State after dispatch: ', store.getState())
 )
 
-// Now, dispatch some actions
+// test 2
+
+console.log('Dispatching action')
 store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about reducers' })
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about stores' })
+console.log('Dispatch complete')
 
-store.dispatch({ type: 'todos/todoToggled', payload: 0 })
-store.dispatch({ type: 'todos/todoToggled', payload: 1 })
+// End test 2
 
-store.dispatch({ type: 'filters/statusFilterChanged', payload: 'Active' })
+// Now, dispatch some actions (test 1)
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about reducers' })
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about stores' })
 
-store.dispatch({
-  type: 'filters/colorFilterChanged',
-  payload: { color: 'red', changeType: 'added' },
-})
+// store.dispatch({ type: 'todos/todoToggled', payload: 0 })
+// store.dispatch({ type: 'todos/todoToggled', payload: 1 })
 
-// Stop listening to state updates
-unsubscribe()
+// store.dispatch({ type: 'filters/statusFilterChanged', payload: 'Active' })
 
-// Dispatch one more action to see what happens
-store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store' })
+// store.dispatch({
+//   type: 'filters/colorFilterChanged',
+//   payload: { color: 'red', changeType: 'added' },
+// })
+
+// // Stop listening to state updates
+// unsubscribe()
+
+// // Dispatch one more action to see what happens
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store' })
 
 ReactDOM.render(
   <React.StrictMode>
