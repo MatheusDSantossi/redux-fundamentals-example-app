@@ -15,11 +15,23 @@ const unsubscribe = store.subscribe(() =>
   console.log('State after dispatch: ', store.getState())
 )
 
+// TEST 4
+store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+// END TEST 4
+
+// TEST 3
+// store.dispatch({ type: 'todo/todoAdded', payload: 'Learn about actions' })
+// // log: "Hi!"
+
+// console.log('State after dispatch: ', store.getState())
+// // log { todos: [...], filters: { status, colors }, meaningOfLife: 42 }
+// END TEST 3
+
 // test 2
 
-console.log('Dispatching action')
-store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
-console.log('Dispatch complete')
+// console.log('Dispatching action')
+// store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
+// console.log('Dispatch complete')
 
 // End test 2
 
