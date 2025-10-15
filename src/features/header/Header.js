@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -6,12 +7,13 @@ import { saveNewTodo } from '../todos/todosSlice'
 const Header = () => {
   // State
   const [text, setText] = useState('')
+  const [status, setStatus] = useState('idle')
 
   const dispatch = useDispatch()
 
-  const handleChange = (e) => e.target.value.trim()
+  const handleChange = (e) => setText(e.target.value.trim())
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = async (e) => {
     const trimmedText = e.target.value.trim()
     //   If the user pressed the Enter key:
     // if (e.key === 'Enter' && trimmedText) {
@@ -26,23 +28,32 @@ const Header = () => {
 
     if (e.which === 13 && trimmedText) {
       // Create the thunk function and immediately dispatch it
-      dispatch(saveNewTodo(trimmedText))
+      setStatus('loading')
+      await dispatch(saveNewTodo(trimmedText))
       setText('')
+      setStatus('idle')
     }
   }
 
-  // return (
-  //   <div>
-  //     <input
-  //       type="text"
-  //       placeholder="What needs to be done?"
-  //       autoFocus
-  //       value={text}
-  //       onChange={handleChange}
-  //       onKeyDown={handleKeyDown}
-  //     />
-  //   </div>
-  // )
+  let isLoading = status === 'loading'
+  let placeholder = isLoading ? '' : 'What needs to be done?'
+  let loader = isLoading ? <div className="loader" /> : null
+
+  return (
+    <header className="header">
+      <input
+        className="new-todo"
+        type="text"
+        placeholder={placeholder}
+        autoFocus
+        value={text}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        disabled={isLoading}
+      />
+      {loader}
+    </header>
+  )
 }
 
 export default Header
