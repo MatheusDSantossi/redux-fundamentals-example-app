@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App'
 
 import './api/server'
 import store from './store'
 import { Provider } from 'react-redux'
+import { fetchTodos } from './features/todos/todosSlice'
 
 // log the initial state
 console.log('Initial state: ', store.getState())
@@ -15,6 +17,20 @@ console.log('Initial state: ', store.getState())
 const unsubscribe = store.subscribe(() =>
   console.log('State after dispatch: ', store.getState())
 )
+
+// TEST 6 - API
+
+const root = createRoot(document.getElementById('root'))
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+)
+
+// END TEST 6 - API
 
 // TEST 5 - UI
 
@@ -60,12 +76,12 @@ const unsubscribe = store.subscribe(() =>
 // // Dispatch one more action to see what happens
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Try creating a store' })
 
-ReactDOM.render(
-  // Render a `<Provider>` around the entire `<App>, and pass the Redux store to it as a prop`
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+// ReactDOM.render(
+//   // Render a `<Provider>` around the entire `<App>, and pass the Redux store to it as a prop`
+//   <React.StrictMode>
+//     <Provider store={store}>
+//       <App />
+//     </Provider>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// )
