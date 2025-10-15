@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoList from './features/todos/TodoList'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <section>
         <h2>Welcome to the Redux Fundamentals example app!</h2>
       </section>
+      <TodoList />
     </div>
   )
 }
